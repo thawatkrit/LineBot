@@ -1,4 +1,4 @@
 <?php
-	require 'MessageController.php';
+	require 'messageController.php';
 	$functions = new MessageController();
 	$functions->getMessage();
