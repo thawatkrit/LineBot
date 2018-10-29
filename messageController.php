@@ -83,9 +83,9 @@ class MessageController{
             'replyToken'=>$replyToken,
             'messages'=>[$messages]
         ];
-        $post=json_encode($data);
-        $headers=array('Content-Type: application/json','Authorization: Bearer '.$this->access_token);
-        $ch=curl_init($url);
+        $post = json_encode($data);
+        $headers = array('Content-Type: application/json','Authorization: Bearer '.$this->access_token);
+        $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_CUSTOMREQUEST,"POST");
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$post);
