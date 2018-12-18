@@ -55,7 +55,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = var_dump($GLOBALS['userList']);
+							$textSend = $GLOBALS['userList'];
 						}
 					}
 					
