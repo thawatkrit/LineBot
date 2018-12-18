@@ -1,11 +1,14 @@
 <?php
+
+$userList = array();
 class MessageController{
 	private $access_token = 'gAUGCPQSFxlvvlwwvO3EuUCQFJZR5cAf2hCBlZRrHJOXYlJYgEXS4Ba+xBr2VGmt4Kre3ID9eusD3DSx8JgMPJWR0uBrdUCh8FV6VIpDr+vSSYIKqcYhV/U3ujDyPv6LP+BQo61lH5Us2K+HIU2TFQdB04t89/1O/w1cDnyilFU=';
+
 	public function getMessage(){
 		header('Content-Type: text/html; charset=utf-8');
 		$content = file_get_contents('php://input');
 		$events = json_decode($content, true);
-        
+
         // keyword list
 		$hello  = array('hello', 'hi', 'halo', 'สวัสดี', 'หวัดดี', 'สัสวดี', 'ทักทาย', 'ฮัลโหล', 'ฮัลโล', 'เฮลโล', 'เฮลโหล');
 		$name = array('name', 'ชื่อ', 'ซื่อ', 'ชือ', 'ชิ่อ');
@@ -26,10 +29,19 @@ class MessageController{
 					$textFromUser = $event['message']['text'];
 					$text = strtolower($textFromUser);
 					$replyToken = $event['replyToken'];
+					$type = $event['source']['type'];
 					
 					// Talk with user
-					if (empty($events['events'][0]['source']['groupId'])) {
+					if ($type === 'user') {
 						$userId = $events['events'][0]['source']['userId'];
+						$userIndex = $this->checkUserId($userId);
+						if ($userIndex === -1) {
+							$userList[count($userList) - 1] = new User($userId);
+							$userList[count($userList) - 1]->saveMessage($text);
+						} else {
+							$userList[$userIndex]->saveMessage($text);
+						}
+
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];
 						}
@@ -79,6 +91,15 @@ class MessageController{
 	    return false;
 	}
 	
+	public function checkUserId($userId) {
+		for($i = 0; $i < count($userList); $i++) {
+			if ($userId == $userList[$i]->getUserId()) {
+				return $i;
+			}
+		}
+		return -1;
+	}
+
 	// Send request to Messaging API
     public function sendMessage($textSend, $replyToken) {
 		// Send message
@@ -102,4 +123,21 @@ class MessageController{
         curl_exec($ch);
         curl_close($ch);
     }
+}
+
+class User{
+	private $userId;
+	private $messageList;
+	public function __construct($userId) {
+		$this->userId = $userId;
+	}
+	public function getUserId() {
+		return $this->userId;
+	}
+	public function saveMessage($message) {
+		array_push($this->$messageList,$message);
+	}
+	public function getMessages() {
+		return $this->messageList;
+	}
 }
