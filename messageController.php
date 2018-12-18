@@ -38,10 +38,10 @@ class MessageController{
 
 						
 						if ($userIndex === -1) {
-							$GLOBALS['userList'][count($GLOBALS['userList'])] = new User($userId);
-							$GLOBALS['userList'][count($GLOBALS['userList']) - 1]->saveMessage($text);
+							$GLOBALS['userList'][count($GLOBALS['userList'])] = 'ab';
+							// $GLOBALS['userList'][count($GLOBALS['userList']) - 1]->saveMessage($text);
 						} else {
-							$GLOBALS['userList'][$userIndex]->saveMessage($text);
+							// $GLOBALS['userList'][$userIndex]->saveMessage($text);
 						}
 
 						if ($this->strposa($text, $hello)){
@@ -55,7 +55,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = count($GLOBALS['userList']);
+							$textSend = var_dump($GLOBALS['userList']);
 						}
 					}
 					
