@@ -36,14 +36,15 @@ class MessageController{
 						$userId = $events['events'][0]['source']['userId'];
 						$userIndex = $this->checkUserId($userId);
 
-						$this->sendMessage($userIndex, $replyToken);
-						break;
-						// if ($userIndex === -1) {
-						// 	$userList[count($userList)] = new User($userId);
-						// 	$userList[count($userList)]->saveMessage($text);
-						// } else {
-						// 	$userList[$userIndex]->saveMessage($text);
-						// }
+						
+						if ($userIndex === -1) {
+							// $userList[count($userList)] = new User($userId);
+							// $userList[count($userList)]->saveMessage($text);
+							$this->sendMessage($userIndex, $replyToken);
+							break;
+						} else {
+							$userList[$userIndex]->saveMessage($text);
+						}
 
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];
