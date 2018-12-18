@@ -38,7 +38,7 @@ class MessageController{
 
 						
 						if ($userIndex === -1) {
-							$GLOBALS['userList'][count($GLOBALS['userList'])] = 'ab';
+							$GLOBALS['userList'][count($GLOBALS['userList'])] = $userId;
 							// $GLOBALS['userList'][count($GLOBALS['userList']) - 1]->saveMessage($text);
 						} else {
 							// $GLOBALS['userList'][$userIndex]->saveMessage($text);
@@ -55,7 +55,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = count($GLOBALS['userList']);
+							$textSend = $GLOBALS['userList'][0];
 						}
 					}
 					
