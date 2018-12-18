@@ -11,7 +11,15 @@ class MessageController{
 		$name = array('name', 'ชื่อ', 'ซื่อ', 'ชือ', 'ชิ่อ');
 		$laugh = array('55', 'hah', 'ฮ่าๆ', 'ถถถ', 'ฮา');
         $bye = array('ออกไป', 'บาย');
-        
+		$bedTime = array('นอนกี่โมง', 'นอนยัง');
+		$cute = array('เธอน่ารัก','เธอน่ารักอะ','น่ารักจัง');
+		$damn = array('ควย', 'ควาย','โง่','สัส','เหี้ย');
+		$eat = array('กินไรยัง');
+		$goodNight = array('ฝันดี', 'ฝันดีครับ');
+		$hangOut = array('ไปเที่ยวกันไหม', 'ไปเที่ยวกัน','ไปเที่ยวกันมั้ย');
+		$howAreYou = array('เป็นไงบ้างอะ','เป็นอย่างไร','เป็นไงบ้าง','เป็นไง');
+		$howAreYouDo = array('ทำไรอยู่','ทำอะไรอยู่');
+
 		if(!is_null($events['events'])) {
 			foreach($events['events'] as $event){
 				if($event['type'] == 'message' && $event['message']['type'] == 'text'){
@@ -26,10 +34,46 @@ class MessageController{
 							$textSend = $events['events'][0]['source']['userId'];
 						}
 						else if ($this->strposa($text, $name)) {
-							$textSend = "ชื่อ Creeper ครับ";
+							$textSend = "เราชื่อ นานะ นะ";
+						}
+						else if ($this->strposa($text, $laugh)) {
+							$random = rand(0,1);
+							switch ($random) {
+								case 0 : $textSend = "ขำไร"; break;
+								case 1 : $textSend = "laugh_sticker";
+							}
 						}
 						else if ($this->strposa($text, $bye)) {
 							$textSend = "ไปไหน";
+						}
+						else if ($this->strposa($text, $bedTime)) {
+							$textSend = "สักพักก็นอนแล้วละ";
+						}
+						else if ($this->strposa($text, $cute)) {
+							$textSend = "ผู้หญิงน่ารักมีเยอะแยะ";
+						}
+						else if ($this->strposa($text, $damn)) {
+							$random = rand(0,1);
+							switch ($random) {
+								case 0 : $textSend = "เสียใจ"; break;
+								case 1 : $textSend = "ด่าทำไม";
+							}
+						}
+						}
+						else if ($this->strposa($text, $eat)) {
+							$textSend = "กำลังกินเลย มาชิมป่าว อร่อยนะ";
+						}
+						else if ($this->strposa($text, $goodNight)) {
+							$textSend = "ฝันดีนะ ฝันถึงเราด้วยนะ";
+						}
+						else if ($this->strposa($text, $hangOut)) {
+							$textSend = "ขอคิดดูก่อนนะ";
+						}
+						else if ($this->strposa($text, $howAreYou)) {
+							$textSend = "สบายดีนะ";
+						}
+						else if ($this->strposa($text, $howAreYouDo)) {
+							$textSend = "ไม่ได้ทำไร";
 						}
 						else {
 							$textSend = $content;
