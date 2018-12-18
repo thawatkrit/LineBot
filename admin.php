@@ -1,5 +1,5 @@
 <?php
-	require 'messageController.php';
+	require 'global.php';
 
     var_dump($GLOBALS['userList']);
 
