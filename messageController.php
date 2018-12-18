@@ -34,13 +34,13 @@ class MessageController{
 					// Talk with user
 					if ($type === 'user') {
 						$userId = $events['events'][0]['source']['userId'];
-						$userIndex = $this->checkUserId($userId);
-						if ($userIndex === -1) {
-							$userList[count($userList) - 1] = new User($userId);
-							$userList[count($userList) - 1]->saveMessage($text);
-						} else {
-							$userList[$userIndex]->saveMessage($text);
-						}
+						// $userIndex = $this->checkUserId($userId);
+						// if ($userIndex === -1) {
+						// 	$userList[count($userList) - 1] = new User($userId);
+						// 	$userList[count($userList) - 1]->saveMessage($text);
+						// } else {
+						// 	$userList[$userIndex]->saveMessage($text);
+						// }
 
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];
