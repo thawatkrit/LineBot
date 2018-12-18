@@ -55,7 +55,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = $GLOBALS['userList'];
+							$textSend = count($GLOBALS['userList']);
 						}
 					}
 					
