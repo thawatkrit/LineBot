@@ -11,6 +11,14 @@ class MessageController{
 		$name = array('name', 'ชื่อ', 'ซื่อ', 'ชือ', 'ชิ่อ');
 		$laugh = array('55', 'hah', 'ฮ่าๆ', 'ถถถ', 'ฮา');
         $bye = array('ออกไป', 'บาย');
+		$bedTime = array('นอนกี่โมง', 'นอนยัง');
+		$cute = array('เธอน่ารัก','เธอน่ารักอะ','น่ารักจัง');
+		$damn = array('ควย', 'ควาย','โง่','สัส','เหี้ย');
+		$eat = array('กินไรยัง');
+		$goodNight = array('ฝันดี', 'ฝันดีครับ');
+		$hangOut = array('ไปเที่ยวกันไหม', 'ไปเที่ยวกัน','ไปเที่ยวกันมั้ย');
+		$howAreYou = array('เป็นไงบ้างอะ','เป็นอย่างไร','เป็นไงบ้าง','เป็นไง');
+		$howAreYouDo = array('ทำไรอยู่','ทำอะไรอยู่');
         
 		if(!is_null($events['events'])) {
 			foreach($events['events'] as $event){
