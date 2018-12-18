@@ -1,3 +1,7 @@
+<?php
+    require 'messageController.php';
+    $reponse = $userList[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,7 @@
         <input type="text" name="userId" value="U1cdfde31d77b135318bd76d016f834a7">
         <br>
         <label for="text">text:</label>
-        <input type="text" name="text" id="">
+        <input type="text" name="text" id="" value="<?php echo $response; ?>">
         <input type="submit" value="Send" name="send">
     </form>
 </body>
