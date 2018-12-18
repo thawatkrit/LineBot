@@ -38,14 +38,10 @@ class MessageController{
 
 						
 						if ($userIndex === -1) {
-							// $userList[count($userList)] = new User($userId);
-							// $userList[count($userList)]->saveMessage($text);
-							$this->sendMessage($userIndex, $replyToken);
-							break;
+							$GLOBALS['userList'][count($GLOBALS['userList'])] = new User($userId);
+							$GLOBALS['userList'][count($GLOBALS['userList']) - 1]->saveMessage($text);
 						} else {
-							// $userList[$userIndex]->saveMessage($text);
-							$this->sendMessage('already exist', $replyToken);
-							break;
+							$GLOBALS['userList'][$userIndex]->saveMessage($text);
 						}
 
 						if ($this->strposa($text, $hello)){
@@ -98,8 +94,8 @@ class MessageController{
 	}
 	
 	public function checkUserId($userId) {
-		for($i = 0; $i < count($userList); $i++) {
-			if ($userId == $userList[$i]->getUserId()) {
+		for($i = 0; $i < count($GLOBALS['userList']); $i++) {
+			if ($userId == $GLOBALS['userList'][$i]->getUserId()) {
 				return $i;
 			}
 		}
@@ -141,7 +137,7 @@ class User{
 		return $this->userId;
 	}
 	public function saveMessage($message) {
-		array_push($this->$messageList,$message);
+		array_push($this->messageList,$message);
 	}
 	public function getMessages() {
 		return $this->messageList;
