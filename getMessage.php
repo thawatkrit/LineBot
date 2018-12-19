@@ -12,15 +12,9 @@
 		public function getUsers() {
 			return $this->userList;
 		}
-		// public function saveMessage($message) {
-		// 	array_push($this->messageList,$message);
-		// }
-		// public function getMessages() {
-		// 	return $this->messageList;
-		// }
 	}
 
-	$users = new Users();
+	// $users = new Users();
 	header('Content-Type: text/html; charset=utf-8');
 	$content = file_get_contents('php://input');
 	$events = json_decode($content, true);
@@ -51,7 +45,7 @@
 				if ($type === 'user') {
 					$userId = $events['events'][0]['source']['userId'];
 					
-					$users->addUserId($userId);
+					// $users->addUserId($userId);
 
 					if (strposa($text, $hello)){
 						$textSend = $events['events'][0]['source']['userId'];
@@ -63,8 +57,8 @@
 						$textSend = "ไปไหน";
 					}
 					else {
-						// $textSend = $content;
-						$textSend = count($users->getUsers());
+						$textSend = $content;
+						// $textSend = count($users->getUsers());
 					}
 				}
 				
