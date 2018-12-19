@@ -1,5 +1,6 @@
 <?php
 // require 'global.php';
+$users = new Users();
 
 class MessageController{
 	private $access_token = 'gAUGCPQSFxlvvlwwvO3EuUCQFJZR5cAf2hCBlZRrHJOXYlJYgEXS4Ba+xBr2VGmt4Kre3ID9eusD3DSx8JgMPJWR0uBrdUCh8FV6VIpDr+vSSYIKqcYhV/U3ujDyPv6LP+BQo61lH5Us2K+HIU2TFQdB04t89/1O/w1cDnyilFU=';
@@ -33,11 +34,9 @@ class MessageController{
 					
 					// Talk with user
 					if ($type === 'user') {
-						$users = new Users();
-
 						$userId = $events['events'][0]['source']['userId'];
 						
-						$users->addUserId($userId);
+						$GLOBALS['users']->addUserId($userId);
 
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];
@@ -50,7 +49,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = count($users->getUsers());
+							$textSend = count($GLOBALS['users']->getUsers());
 						}
 					}
 					
