@@ -33,11 +33,11 @@ class MessageController{
 					
 					// Talk with user
 					if ($type === 'user') {
-						// $users = new Users();
+						$users = new Users();
 
 						$userId = $events['events'][0]['source']['userId'];
 						
-						// $users.addUserId($userId);
+						$users->addUserId($userId);
 
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];
