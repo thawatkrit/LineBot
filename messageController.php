@@ -1,5 +1,6 @@
 <?php
-require 'global.php';
+// require 'global.php';
+$users = new Users();
 
 class MessageController{
 	private $access_token = 'gAUGCPQSFxlvvlwwvO3EuUCQFJZR5cAf2hCBlZRrHJOXYlJYgEXS4Ba+xBr2VGmt4Kre3ID9eusD3DSx8JgMPJWR0uBrdUCh8FV6VIpDr+vSSYIKqcYhV/U3ujDyPv6LP+BQo61lH5Us2K+HIU2TFQdB04t89/1O/w1cDnyilFU=';
@@ -34,15 +35,8 @@ class MessageController{
 					// Talk with user
 					if ($type === 'user') {
 						$userId = $events['events'][0]['source']['userId'];
-						$userIndex = $this->checkUserId($userId);
-
 						
-						if ($userIndex === -1) {
-							$GLOBALS['userList'][count($GLOBALS['userList'])] = $userId;
-							// $GLOBALS['userList'][count($GLOBALS['userList']) - 1]->saveMessage($text);
-						} else {
-							// $GLOBALS['userList'][$userIndex]->saveMessage($text);
-						}
+						$users.addUserId($userId);
 
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];
@@ -55,7 +49,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = $GLOBALS['userList'][0];
+							$textSend = $user->getUsers();
 						}
 					}
 					
@@ -128,19 +122,22 @@ class MessageController{
     }
 }
 
-class User{
-	private $userId;
-	private $messageList;
-	public function __construct($userId) {
-		$this->userId = $userId;
+class Users{
+	private $userList = array();
+	// private $messageList;
+
+	public function addUserId($userId) {
+		if(!in_array($userId, $this->userList)) {
+			array_push($this->userList, $userId);
+		}
 	}
-	public function getUserId() {
-		return $this->userId;
+	public function getUsers() {
+		return $this->userList;
 	}
-	public function saveMessage($message) {
-		array_push($this->messageList,$message);
-	}
-	public function getMessages() {
-		return $this->messageList;
-	}
+	// public function saveMessage($message) {
+	// 	array_push($this->messageList,$message);
+	// }
+	// public function getMessages() {
+	// 	return $this->messageList;
+	// }
 }
