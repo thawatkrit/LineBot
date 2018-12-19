@@ -49,7 +49,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = $user->getUsers();
+							$textSend = count($user->getUsers());
 						}
 					}
 					
