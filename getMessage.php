@@ -1,5 +1,5 @@
 <?php
-
+	$access_token = 'gAUGCPQSFxlvvlwwvO3EuUCQFJZR5cAf2hCBlZRrHJOXYlJYgEXS4Ba+xBr2VGmt4Kre3ID9eusD3DSx8JgMPJWR0uBrdUCh8FV6VIpDr+vSSYIKqcYhV/U3ujDyPv6LP+BQo61lH5Us2K+HIU2TFQdB04t89/1O/w1cDnyilFU=';
 	class Users{
 		private $userList = array();
 		// private $messageList;
@@ -115,7 +115,7 @@
             'messages'=>[$messages]
         ];
         $post = json_encode($data);
-        $headers = array('Content-Type: application/json','Authorization: Bearer '.access_token);
+        $headers = array('Content-Type: application/json','Authorization: Bearer '.$access_token);
         $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_CUSTOMREQUEST,"POST");
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
