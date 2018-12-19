@@ -36,7 +36,7 @@ class MessageController{
 					if ($type === 'user') {
 						$userId = $events['events'][0]['source']['userId'];
 						
-						$users.addUserId($userId);
+						$GLOBALS['users'].addUserId($userId);
 
 						if ($this->strposa($text, $hello)){
 							$textSend = $events['events'][0]['source']['userId'];

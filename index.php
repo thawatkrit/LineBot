@@ -1,7 +1,3 @@
-<?php
-    require 'global.php';
-    $reponse = $GLOBALS['userList'][0];
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
