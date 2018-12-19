@@ -50,7 +50,7 @@ class MessageController{
 						}
 						else {
 							// $textSend = $content;
-							$textSend = count($user->getUsers());
+							$textSend = count($users->getUsers());
 						}
 					}
 					
